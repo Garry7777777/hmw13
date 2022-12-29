@@ -30,6 +30,8 @@ public abstract class Transport<T> implements Competitive{
     public void announcement(){
         System.out.println(this.driver + " управляет автомобилем " + this.brand + this.model + "  " + " и будет участвовать в заезде");
     }
+    public abstract void printType();
+
 
     public String getBrand() {
         return brand;

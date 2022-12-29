@@ -4,12 +4,13 @@ import drivers.DriverD;
 import java.security.PublicKey;
 
 public class Bus extends Transport<DriverD> {
+    private Capacity capacity;
 
     public enum Capacity {
         VERYSMALL(0, 10),
         SMALL(0, 20),
         MEDIUM(40, 50),
-        BUG(60, 80),
+        BIG(60, 80),
         VERYBIG(100, 120);
         private final int minCapacity;
         private final int maxCapacity;
@@ -25,8 +26,15 @@ public class Bus extends Transport<DriverD> {
         }
     }
 
-    public Bus(String brand, String model, float engineVolume, DriverD driver) {
+    public Bus(Capacity capacity, String brand, String model, float engineVolume, DriverD driver) {
         super(brand, model, engineVolume, driver);
+
+        this.capacity = capacity;
+    }
+
+    public void printType() {
+        if(capacity == null) System.out.println("Данных по транспортному средству недостаточно");
+        else System.out.println(capacity);
     }
     @Override
     public void bestLapTime() {
@@ -40,6 +48,12 @@ public class Bus extends Transport<DriverD> {
     @Override
     public String toString() {
         return "Bus марка:" + brand + " модель:" + model + " объем двигателя:" + engineVolume + " водитель:" + driver;
+    }
 
+    public Capacity getCapacity() {
+        return capacity;
+    }
+    public void setCapacity(Capacity capacity) {
+        this.capacity = capacity;
     }
 }

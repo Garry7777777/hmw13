@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class Trucks extends Transport<DriverC> {
     static final float TRUCKSLOWLIMIT = 3.5f;
     static final float TRUCKSHILIMIT = 12f;
+    private Carrying carrying;
     public enum  Carrying {
         N1( 0, TRUCKSLOWLIMIT),
         N2(TRUCKSLOWLIMIT, TRUCKSHILIMIT),
@@ -29,9 +30,15 @@ public class Trucks extends Transport<DriverC> {
         }
     }
 
-    public Trucks(String brand, String model, float engineVolume, DriverC driver) {
+    public Trucks(Carrying carrying, String brand, String model, float engineVolume, DriverC driver) {
         super(brand, model, engineVolume, driver);
+        this.carrying = carrying;
     }
+    public void printType() {
+        if(carrying == null) System.out.println("Данных по транспортному средству недостаточно");
+        else System.out.println(carrying);
+    }
+
     @Override
     public void bestLapTime() {
         System.out.println(" лучшее время круга грузовика " + this.brand + this.model);
@@ -43,6 +50,13 @@ public class Trucks extends Transport<DriverC> {
     @Override
     public String toString() {
         return "Truck марка:" + brand + " модель:" + model + " объем двигателя:" + engineVolume + " водитель:" + driver;
-
     }
+    public Carrying getCarrying() {
+        return carrying;
+    }
+
+    public void setCarrying(Carrying carrying) {
+        this.carrying = carrying;
+    }
+
 }
